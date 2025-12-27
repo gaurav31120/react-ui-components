@@ -1,0 +1,119 @@
+@import '../../styles/_mixins.scss';
+
+%loading-styles {
+    background: gray;
+    color: transparent;
+    border: none;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    height: 48px;
+    width: auto;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    font-size: 16px;
+    // background-color: green;
+
+    &__label {
+        text-overflow: ellipsis;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    &:hover {
+        background: rgb(91, 212, 91);
+    }
+    &--active {
+        background-color: orange;
+    }
+    &:disabled {
+        background: rgb(218, 210, 210);
+        color: rgb(138, 130, 130);
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    &--size-small {
+        min-width: 120px;
+        height: 42px;
+        padding: 0, 12px, 0, 12px;
+    }
+
+    &--variant-secondary {
+    }
+
+    &--variant-tertiary {
+        background: transparent;
+    }
+    &--variant-danger {
+        background: transparent;
+    }
+
+    &--theme-success {
+        background: rgb(118, 215, 118);
+        color: green;
+    }
+    &--theme-danger {
+        background: rgb(215, 65, 65);
+        color: red;
+    }
+
+    &--fluid {
+        height: 44px;
+        width: 100%;
+    }
+
+    &--loading {
+        &.button {
+            @extend %loading-styles;
+
+            &--variant-secondary,
+            &--variant-tertiary {
+                @extend %loading-styles;
+
+                &.button--theme-success,
+                &.button--theme-danger {
+                    @extend %loading-styles;
+
+                    &:disabled {
+                        @extend %loading-styles;
+                    }
+                }
+            }
+
+            &--theme-success,
+            &--theme-danger {
+                @extend %loading-styles;
+
+                &:disabled {
+                    @extend %loading-styles;
+                }
+            }
+
+            &:disabled {
+                @extend %loading-styles;
+            }
+        }
+    }
+
+    &__loader {
+        position: absolute;
+        position: 50%, 0, 0, 50%;
+    }
+
+    @include media-query(notebook) {
+        .button {
+            padding: 0, 12px, 0, 12px;
+        }
+    }
+}

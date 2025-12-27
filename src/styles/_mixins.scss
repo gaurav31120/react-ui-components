@@ -1,0 +1,38 @@
+@mixin media-query($breakpoint) {
+    @if $breakpoint == small-phone {
+        @media only screen and (max-width: 480px) {
+            @content;
+        }
+    } @else if $breakpoint == phone {
+        @media only screen and (max-width: 767px) {
+            @content;
+        }
+    } @else if $breakpoint == large-phone {
+        @media only screen and (max-width: 860px) {
+            @content;
+        }
+    } @else if $breakpoint == notebook {
+        // needed
+        @media only screen and (max-width: 1024px) {
+            @content;
+        }
+    } @else if $breakpoint == tablet {
+        @media only screen and (max-width: 1280px) {
+            @content;
+        }
+    } @else if $breakpoint == notebook-large {
+        @media only screen and (max-width: 1304px) {
+            @content;
+        }
+    } @else if $breakpoint == desktop {
+        @media only screen and (max-width: 1440px) {
+            @content;
+        }
+    } @else if $breakpoint == large-desktop {
+        @media only screen and (min-width: 1440px) {
+            @content;
+        }
+    } @else {
+        @warn "Unknown breakpoint #{$breakpoint}.";
+    }
+}
