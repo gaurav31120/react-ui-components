@@ -3,8 +3,6 @@ import './ComponentsDashboard.css'
 
 const components = [
     { title: 'Button', path: '/components/button' },
-    { title: 'Input', path: '/components/input' },
-    { title: 'Modal', path: '/components/modal' },
 ]
 
 function ComponentsDashboard() {
