@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, MouseEvent } from 'react'
 import './Button.scss'
-import Loader from './Loader/Loader'
+import Loader from '../Loader/Loader'
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     ariaLabel?: string
     className?: string

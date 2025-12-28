@@ -1,4 +1,4 @@
-import Loader from '../core-components/Button/Loader/Loader'
+import Loader from '../core-components/Loader/Loader'
 
 function LoaderPage() {
     return (
