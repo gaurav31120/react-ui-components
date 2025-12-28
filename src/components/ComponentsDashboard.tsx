@@ -4,6 +4,7 @@ import './ComponentsDashboard.css'
 const components = [
     { title: 'Button', path: '/components/button' },
     { title: 'Loader', path: '/components/loader' },
+    { title: 'Tooltip', path: '/components/tooltip' },
 ]
 
 function ComponentsDashboard() {

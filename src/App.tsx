@@ -3,6 +3,7 @@ import './App.css'
 import ButtonPage from './components/ButtonPage'
 import ComponentsDashboard from './components/ComponentsDashboard'
 import LoaderPage from './components/LoaderPage'
+import TooltipPage from './components/TooltipPage'
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
                 <Route path="/" element={<ComponentsDashboard />} />
                 <Route path="/components/button" element={<ButtonPage />} />
                 <Route path="/components/loader" element={<LoaderPage />} />
+                <Route path="/components/tooltip" element={<TooltipPage />} />
             </Routes>
         </BrowserRouter>
     )
