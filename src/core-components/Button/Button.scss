@@ -1,119 +1,143 @@
-@import '../../styles/_mixins.scss';
-
-%loading-styles {
-    background: gray;
-    color: transparent;
-    border: none;
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
 .button {
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
     height: 48px;
-    width: auto;
+    padding: 0 16px;
     cursor: pointer;
     position: relative;
-    border: none;
+    border: 2px solid transparent;
     font-size: 16px;
-    // background-color: green;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    gap: 8px;
 
-    &__label {
-        text-overflow: ellipsis;
-    }
+    // Primary variant (default)
+    &--variant-primary {
+        background-color: #007bff;
+        color: white;
 
-    svg {
-        width: 24px;
-        height: 24px;
-    }
-
-    &:hover {
-        background: rgb(91, 212, 91);
-    }
-    &--active {
-        background-color: orange;
-    }
-    &:disabled {
-        background: rgb(218, 210, 210);
-        color: rgb(138, 130, 130);
-        pointer-events: none;
-        cursor: not-allowed;
-    }
-
-    &--size-small {
-        min-width: 120px;
-        height: 42px;
-        padding: 0, 12px, 0, 12px;
+        &:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
     }
 
     &--variant-secondary {
+        background-color: transparent;
+        color: #007bff;
+        border-color: #007bff;
+
+        &:hover:not(:disabled) {
+            background-color: #007bff;
+            color: white;
+        }
     }
 
     &--variant-tertiary {
-        background: transparent;
-    }
-    &--variant-danger {
-        background: transparent;
+        background-color: transparent;
+        color: #007bff;
+
+        &:hover:not(:disabled) {
+            background-color: #f8f9fa;
+        }
     }
 
-    &--theme-success {
-        background: rgb(118, 215, 118);
-        color: green;
+    &--variant-danger {
+        background-color: #dc3545;
+        color: white;
+
+        &:hover:not(:disabled) {
+            background-color: #c82333;
+        }
     }
+
+    // Themes
     &--theme-danger {
-        background: rgb(215, 65, 65);
-        color: red;
+        &.button--variant-primary {
+            background-color: #dc3545;
+
+            &:hover:not(:disabled) {
+                background-color: #c82333;
+            }
+        }
+
+        &.button--variant-secondary {
+            color: #dc3545;
+            border-color: #dc3545;
+
+            &:hover:not(:disabled) {
+                background-color: #dc3545;
+                color: white;
+            }
+        }
+
+        &.button--variant-tertiary {
+            color: #dc3545;
+        }
+    }
+
+    // Sizes
+    &--size-small {
+        height: 32px;
+        padding: 0 12px;
+        font-size: 14px;
+    }
+
+    &--size-medium {
+        height: 40px;
+        padding: 0 16px;
+        font-size: 15px;
+    }
+
+    &--size-large {
+        height: 56px;
+        padding: 0 24px;
+        font-size: 18px;
     }
 
     &--fluid {
-        height: 44px;
         width: 100%;
     }
 
+    &--active {
+        transform: scale(0.98);
+    }
+
+    &:disabled {
+        background-color: #e9ecef;
+        color: #6c757d;
+        border-color: #e9ecef;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+
     &--loading {
-        &.button {
-            @extend %loading-styles;
+        color: transparent;
+        pointer-events: none;
 
-            &--variant-secondary,
-            &--variant-tertiary {
-                @extend %loading-styles;
+        .button__loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
 
-                &.button--theme-success,
-                &.button--theme-danger {
-                    @extend %loading-styles;
+        &.button--variant-secondary .button__loader,
+        &.button--variant-tertiary .button__loader {
+            color: #007bff;
+        }
 
-                    &:disabled {
-                        @extend %loading-styles;
-                    }
-                }
-            }
-
-            &--theme-success,
-            &--theme-danger {
-                @extend %loading-styles;
-
-                &:disabled {
-                    @extend %loading-styles;
-                }
-            }
-
-            &:disabled {
-                @extend %loading-styles;
-            }
+        &.button--theme-danger.button--variant-secondary .button__loader,
+        &.button--theme-danger.button--variant-tertiary .button__loader {
+            color: #dc3545;
         }
     }
 
-    &__loader {
-        position: absolute;
-        position: 50%, 0, 0, 50%;
-    }
-
-    @include media-query(notebook) {
-        .button {
-            padding: 0, 12px, 0, 12px;
-        }
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
     }
 }

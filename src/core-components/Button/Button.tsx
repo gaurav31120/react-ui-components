@@ -1,5 +1,6 @@
 import type { ButtonHTMLAttributes, MouseEvent } from 'react'
 import './Button.scss'
+import Loader from './Loader/Loader'
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     ariaLabel?: string
     className?: string
@@ -7,7 +8,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     disabled?: boolean
     fluid?: boolean
     label?: string
-    // children: React.ReactNode;
+    children?: React.ReactNode
     onClick?: () => void | ((event: MouseEvent<HTMLButtonElement>) => void)
     startIcon?: React.ReactNode
     endIcon?: React.ReactNode
@@ -19,7 +20,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = ({
-    // children,
+    children,
     ariaLabel,
     className,
     dataTestId,
@@ -39,7 +40,7 @@ const Button = ({
     const buttonClassName = `
             button
             button--theme-${theme}
-            buton--variant-${variant}
+            button--variant-${variant}
             button--size-${size}
             ${fluid ? 'button--fluid' : ''}
             ${loading ? 'button--loading' : ''}
@@ -48,21 +49,16 @@ const Button = ({
     return (
         <button
             type="button"
-            className={`${buttonClassName} ${className}`}
+            className={`${buttonClassName} ${className || ''}`}
             onClick={onClick}
             aria-label={ariaLabel ?? label ?? 'button'}
             data-testid={dataTestId ?? 'button'}
             disabled={disabled}
             {...rest}
         >
-            {/* {children} */}
             {startIcon}
-            {label && <span className="button__label">{label}</span>}
-            {loading && (
-                <span className="button__loader" data-testid="loader">
-                    ...Loading
-                </span>
-            )}
+            {children || label}
+            {loading && <Loader className="button__loader" size="small" />}
             {endIcon}
         </button>
     )
